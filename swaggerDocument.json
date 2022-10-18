@@ -23,7 +23,7 @@
 
     "components": {
         "schema": {
-            "ArrayOfPets": {
+            "Pets": {
                 "type": "array",
                 "items": {
                     "$ref": "#/definitions/Pet"
