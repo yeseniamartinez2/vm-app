@@ -1,3 +1,4 @@
+const swaggerUi = require("swagger-ui-express")
 const express = require("express")
 const bodyParser = require("body-parser")
 const app = express()
@@ -22,12 +23,13 @@ app.use(cors(corsOptions))
 app.use(express.static("uploads"))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-
+swaggerDocument = require("./swaggerDocument")
 const checkScopes = requiredScopes("read:pets")
 // app.get("/role", checkJwt, checkScopes, (req, res) =>
 //     res.send("Read:pets permission")
 // )
 //app.get("/", checkJwt, (req, res) => res.send("App is secured"))
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 app.use("/", routes)
 
 // perform a database connection when the server starts

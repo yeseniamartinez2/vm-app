@@ -1,0 +1,76 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Pets API",
+        "description": "Pets API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "yma-tfm-backend.herokuapp.com",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Pets API",
+            "description": "Pets API"
+        }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+
+    "components": {
+        "schema": {
+            "ArrayOfPets": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/Pet"
+                }
+            }
+        }
+    },
+
+    "definitions": {
+        "Pet": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "examples": {
+                "_id": "634c43124c544dd4eb0964bf",
+                "Cabildero": "Maya"
+            }
+        },
+        "ArrayOfPets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Cabildero"
+            }
+        }
+    },
+
+    "paths": {
+        "/pets": {
+            "get": {
+                "tags": ["Pets"],
+                "summary": "Pets list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+
+                        "schema": {
+                            "$ref": "#/definitions/Pets"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
