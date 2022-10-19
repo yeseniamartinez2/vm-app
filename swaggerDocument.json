@@ -17,7 +17,7 @@
             "description": "Pets API"
         }
     ],
-    "schemes": ["http"],
+    "schemes": ["https", "http"],
     "consumes": ["application/json"],
     "produces": ["application/json"],
 
