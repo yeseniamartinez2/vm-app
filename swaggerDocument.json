@@ -45,7 +45,7 @@
             },
             "examples": {
                 "_id": "634c43124c544dd4eb0964bf",
-                "Cabildero": "Maya"
+                "name": "Maya"
             }
         },
         "ArrayOfPets": {
