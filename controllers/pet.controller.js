@@ -4,9 +4,11 @@ const { petService } = require("../services");
  * call other imported services, or same service but different functions here 
  */
 const postPet = async (req, res, next) => {
+    console.log("🌺 ~ file: pet.controller.js ~ line 7 ~ postPet ~ req", req.files)
     const { name, dob, species, gender, filename, kids_comp, pets_comp, description } = req.body;
+    const files = req.files;
     try {
-        await petService.createPet(name, dob, species, gender, filename, kids_comp, pets_comp, description);
+        await petService.createPet(name, dob, species, gender, filename, kids_comp, pets_comp, description, files);
         res.sendStatus(201);
         next();
     } catch (e) {

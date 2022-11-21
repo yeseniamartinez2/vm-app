@@ -4,8 +4,14 @@ const { petDb } = require("../db");
  * if need to make calls to additional tables, data stores,
  * or call an external endpoint, add to this service
  */
-const createPet = async (name, dob, species, gender, filename, kids_comp, pets_comp, description) => {
+
+const sharp = require("sharp")
+const createPet = async (name, dob, species, gender, filename, kids_comp, pets_comp, description, files) => {
+    console.log("🌺 ~ file: pet.service.js ~ line 8 ~ createPet ~ files", files)
     try {
+        sharp("C:/react/test-projects/another-test/tfm-backend/app/uploads/" + files[0].originalname)
+            .toFormat("png", { palette: true })
+            .toFile("C:/react/test-projects/another-test/tfm-backend/app/uploads/successssss_test.png")
         return await petDb.insertPet(name, dob, species, gender, filename, kids_comp, pets_comp, description);
     } catch (e) {
         throw new Error(e.message);
@@ -15,7 +21,6 @@ const createPet = async (name, dob, species, gender, filename, kids_comp, pets_c
 const getPets = async () => {
     try {
         const pets = await petDb.getPets();
-        console.log("🚀 ~ file: pet.service.js ~ line 18 ~ getPets ~ pets", pets);
         return pets;
     } catch (e) {
         throw new Error(e.message);
@@ -25,7 +30,6 @@ const getPets = async () => {
 const getPetById = async (id) => {
     try {
         const pet = await petDb.getPetById(id);
-        console.log("🚀 ~ file: pet.service.js ~ line 18 ~ getPets ~ pet", pet);
         return pet;
     } catch (e) {
         throw new Error(e.message);
