@@ -1,13 +1,6 @@
-<<<<<<< HEAD
 const { MongoClient, ServerApiVersion } = require("mongodb")
 require("dotenv").config()
 const connectionString = process.env.MONGO_URL_CLOUD
-=======
-const { MongoClient } = require("mongodb");
-require("dotenv").config();
-const connectionString = process.env.MONGO_URL_CLOUD;
-console.log("🚀 ~ file: conn.js ~ line 4 ~ connectionString", connectionString);
->>>>>>> e2ea22d4c541f92a050cd2a5ff560b425fddae57
 const client = new MongoClient(connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
