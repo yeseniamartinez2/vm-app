@@ -18,19 +18,62 @@ const createPet = async (
     files
 ) => {
     try {
+        const dateOfBirth = new Date(dob)
         console.log(
-            "🌿 ~ file: pet.service.js ~ line 22 ~ path.join(__dirname + ../uploads/ + files[0].originalname)",
-            path.join(__dirname, "..", "uploads", files[0].originalname)
+            "🌿 ~ file: pet.service.js ~ line 22 ~ dateOfBirth",
+            dateOfBirth
         )
-
+        console.log("🌿 ~ file: pet.service.js ~ line 22 ~ dob", dob)
         sharp(path.join(__dirname, "..", "uploads", files[0].originalname))
-            .toFormat("png", { palette: true })
+            .resize(425, 300, {
+                fit: "cover",
+            })
+            .toFormat("avif", { palette: true })
             .toFile(
                 path.join(
                     __dirname,
                     "..",
                     "uploads",
-                    files[0].originalname + "converted"
+                    name +
+                        "_" +
+                        dateOfBirth.getMonth() +
+                        dateOfBirth.getFullYear() +
+                        "_medium.avif"
+                )
+            )
+        sharp(path.join(__dirname, "..", "uploads", files[0].originalname))
+            .resize(50, 50, {
+                fit: "fill",
+            })
+            .toFormat("avif", { palette: true })
+            .toFile(
+                path.join(
+                    __dirname,
+                    "..",
+                    "uploads",
+                    name +
+                        "_" +
+                        dateOfBirth.getMonth() +
+                        dateOfBirth.getFullYear() +
+                        "_thumbnail.avif"
+                )
+            )
+        sharp(path.join(__dirname, "..", "uploads", files[0].originalname))
+            .resize(550, 350, {
+                fit: "contain",
+                position: "right top",
+            })
+            .toFormat("avif", { palette: true })
+            .toFile(
+                path.join(
+                    __dirname,
+                    "..",
+                    "uploads",
+                    name +
+                        "_" +
+                        dateOfBirth.getMonth() +
+                        dateOfBirth.getFullYear() +
+                        "_large.avif"
                 )
             )
         return await petDb.insertPet(

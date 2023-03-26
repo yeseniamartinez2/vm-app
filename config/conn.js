@@ -8,11 +8,11 @@ const client = new MongoClient(connectionString, {
 })
 
 let dbConnection
-
 module.exports = {
     connectToServer: function (callback) {
         client.connect(function (err, db) {
             if (err || !db) {
+                console.log("🌿 ~ file: conn.js:15 ~ err :", err)
                 return callback(err)
             }
 
