@@ -30,6 +30,7 @@ const checkScopes = requiredScopes("read:pets")
 // )
 //app.get("/", checkJwt, (req, res) => res.send("App is secured"))
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.use("/", res.json("hello world"))
 app.use("/", routes)
 
 // perform a database connection when the server starts
