@@ -1,7 +1,6 @@
 const { MongoClient, ServerApiVersion } = require("mongodb")
 require("dotenv").config()
-const connectionString =
-    "mongodb+srv://db_admin:pNQULLuCsitr7Tw@cluster0.lbxkf.mongodb.net/?retryWrites=true&w=majority"
+const connectionString = process.env.MONGO_URL_CLOUD
 const client = new MongoClient(connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
