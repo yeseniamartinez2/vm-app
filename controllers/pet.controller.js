@@ -10,24 +10,24 @@ const postPet = async (req, res, next) => {
         species,
         gender,
         filename,
-        kids_comp,
-        pets_comp,
+        spay_neut,
+        vaxxed,
         description,
     } = req.body
     const files = req.files
     try {
-        await petService.createPet(
+        const result = await petService.createPet(
             name,
             dob,
             species,
             gender,
             filename,
-            kids_comp,
-            pets_comp,
+            spay_neut,
+            vaxxed,
             description,
             files
         )
-        res.sendStatus(201)
+        res.send(result)
         next()
     } catch (e) {
         console.log(e.message)
@@ -78,23 +78,24 @@ const putPet = async (req, res, next) => {
         species,
         gender,
         filename,
-        kids_comp,
-        pets_comp,
+        spay_neut,
+        vaxxed,
         description,
     } = req.body
     try {
-        await petService.putPet(
+        const result = await petService.putPet(
             id,
             name,
             dob,
             species,
             gender,
             filename,
-            kids_comp,
-            pets_comp,
+            spay_neut,
+            vaxxed,
             description
         )
-        res.sendStatus(202)
+
+        res.send(result)
         next()
     } catch (e) {
         console.log(e.message)

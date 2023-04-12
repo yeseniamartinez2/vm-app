@@ -12,18 +12,13 @@ const createPet = async (
     species,
     gender,
     filename,
-    kids_comp,
-    pets_comp,
+    spay_neut,
+    vaxxed,
     description,
     files
 ) => {
     try {
         const dateOfBirth = new Date(dob)
-        console.log(
-            "🌿 ~ file: pet.service.js ~ line 22 ~ dateOfBirth",
-            dateOfBirth
-        )
-        console.log("🌿 ~ file: pet.service.js ~ line 22 ~ dob", dob)
         sharp(path.join(__dirname, "..", "uploads", files[0].originalname))
             .resize(425, 300, {
                 fit: "cover",
@@ -82,8 +77,8 @@ const createPet = async (
             species,
             gender,
             filename,
-            kids_comp,
-            pets_comp,
+            spay_neut,
+            vaxxed,
             description
         )
     } catch (e) {
@@ -124,22 +119,24 @@ const putPet = async (
     species,
     gender,
     filename,
-    kids_comp,
-    pets_comp,
+    spay_neut,
+    vaxxed,
     description
 ) => {
     try {
-        return await petDb.putPet(
+        const result = await petDb.putPet(
             id,
             name,
             dob,
             species,
             gender,
             filename,
-            kids_comp,
-            pets_comp,
+            spay_neut,
+            vaxxed,
             description
         )
+
+        return result
     } catch (e) {
         throw new Error(e.message)
     }
