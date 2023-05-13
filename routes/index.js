@@ -1,6 +1,6 @@
 const express = require("express")
 
-const { petController } = require("../controllers")
+const { petController, adoptionRequestController } = require("../controllers")
 const { optimizeImg } = require("../middlewares/image-resizing")
 const router = express.Router()
 const sharp = require("sharp")
@@ -22,5 +22,13 @@ router.get("/pets", petController.getPets)
 router.get("/pets/:id", petController.getPetById)
 router.put("/pets/:id", upload.array("petPhoto"), petController.putPet)
 router.delete("/pets/:id", petController.deletePetById)
+
+router.post("/adoption-requests", adoptionRequestController.postAdoptionRequest)
+router.get("/adoption-requests", adoptionRequestController.getAdoptionRequests)
+router.put("/adoption-requests", adoptionRequestController.updateRequestStatus)
+router.delete(
+    "/adoption-requests/:id",
+    adoptionRequestController.deleteRequestById
+)
 
 module.exports = router

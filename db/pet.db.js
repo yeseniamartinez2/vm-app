@@ -56,7 +56,7 @@ const deletePetById = async (id) => {
         .collection("pets")
         .deleteOne({ _id: o_id }, function (err, result) {
             if (err) {
-                console.log("Error inserting pet!")
+                console.log("Error deleting pet!")
             } else {
                 console.log(`Deleted pet with id ${id}`)
             }
