@@ -74,9 +74,35 @@ const updateRequestStatus = async (req, res, next) => {
     }
 }
 
+const getRequestById = async (req, res, next) => {
+    const id = req.params.id
+    try {
+        const request = await adoptionRequestService.getRequestById(id)
+        res.json(request)
+        next()
+    } catch (e) {
+        console.log(e.message)
+        res.sendStatus(500) && next(error)
+    }
+}
+
+const getRequestsByUser = async (req, res, next) => {
+    const { email } = req.params
+    try {
+        const result = await adoptionRequestService.getRequestsByUser(email)
+        res.send(result)
+        next()
+    } catch (e) {
+        console.log(e.message)
+        res.sendStatus(500) && next(error)
+    }
+}
+
 module.exports = {
     postAdoptionRequest,
     getAdoptionRequests,
     deleteRequestById,
     updateRequestStatus,
+    getRequestById,
+    getRequestsByUser,
 }

@@ -86,9 +86,44 @@ const updateRequestStatus = async (id, status) => {
     )
 }
 
+const getRequestById = async (id) => {
+    const dbConnect = dbo.getDb()
+    var o_id = new ObjectId(id)
+    return await dbConnect
+        .collection("adoption_requests")
+        .find({ _id: o_id })
+        .toArray()
+        .then((results) => {
+            return results
+        })
+}
+
+const getRequestsByUser = async (email) => {
+    const dbConnect = dbo.getDb()
+    return await dbConnect
+        .collection("adoption_requests")
+        .aggregate([
+            {
+                $lookup: {
+                    from: "pets",
+                    localField: "pet_id",
+                    foreignField: "_id",
+                    as: "pet",
+                },
+            },
+            { $match: { user_email: email } },
+        ])
+        .toArray()
+        .then((results) => {
+            return results
+        })
+}
+
 module.exports = {
     insertAdoptionRequest,
     getAdoptionRequests,
     deleteRequestById,
     updateRequestStatus,
+    getRequestById,
+    getRequestsByUser,
 }

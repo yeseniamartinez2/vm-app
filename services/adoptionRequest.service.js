@@ -58,9 +58,29 @@ const updateRequestStatus = async (id, status) => {
     }
 }
 
+const getRequestById = async (id) => {
+    try {
+        const request = await adoptionRequestDb.getRequestById(id)
+        return request
+    } catch (e) {
+        throw new Error(e.message)
+    }
+}
+
+const getRequestsByUser = async (email) => {
+    try {
+        const request = await adoptionRequestDb.getRequestsByUser(email)
+        return request
+    } catch (e) {
+        throw new Error(e.message)
+    }
+}
+
 module.exports = {
     createAdoptionRequest,
     getAdoptionRequests,
     deleteRequestById,
     updateRequestStatus,
+    getRequestById,
+    getRequestsByUser,
 }

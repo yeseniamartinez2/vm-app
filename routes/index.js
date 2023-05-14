@@ -25,6 +25,11 @@ router.delete("/pets/:id", petController.deletePetById)
 
 router.post("/adoption-requests", adoptionRequestController.postAdoptionRequest)
 router.get("/adoption-requests", adoptionRequestController.getAdoptionRequests)
+router.get("/adoption-requests/:id", adoptionRequestController.getRequestById)
+router.get(
+    "/user-adoption-requests/:email",
+    adoptionRequestController.getRequestsByUser
+)
 router.put("/adoption-requests", adoptionRequestController.updateRequestStatus)
 router.delete(
     "/adoption-requests/:id",
